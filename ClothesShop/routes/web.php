@@ -31,8 +31,8 @@ Route::post('/logon', [AdminController::class, 'logon'])->name('logon');
 
 // Bảo vệ bởi authentication => phải đăng nhập mới có quyền truy cập
 // Route::middleware('auth')->prefix('/admin')->group(function(){    
-//     // Route::get('/index', [HomeController::class, 'index'])->name('admin.index');
-//     // Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+//     Route::get('/index', [HomeController::class, 'index'])->name('admin.index');
+//     Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 // });
 
 
@@ -66,7 +66,6 @@ Route::get('/index', [HomeController::class, 'index'])->name('index');
 
 //backend
 Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
-
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
 //category_product

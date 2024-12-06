@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('Category_Product', function (Blueprint $table) {
             $table->id('cat_id');
             $table->string('cat_name');
-            $table->text('cat_description');
+            $table->text('cat_description')->nullable();
             $table->boolean('cat_status');
             $table->timestamps();
         });
