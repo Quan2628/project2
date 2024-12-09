@@ -57,11 +57,11 @@
                 <?php
                 if ($cat_prod->cat_status == 0){
                 ?>
-                  <a href="{{ route('unactive_cat', ['cat_product_id' => $cat_prod->cat_id]) }}">Ẩn</a>
+                  <a href="{{ route('unactive_cat', ['cat_product_id' => $cat_prod->cat_id]) }}">Hiển thị</a>
                 <?php  
                 }else{
                 ?>
-                  <a href="{{ route('active_cat', ['cat_product_id' => $cat_prod->cat_id]) }}">Hiển thị</a>
+                  <a href="{{ route('active_cat', ['cat_product_id' => $cat_prod->cat_id]) }}">Ẩn</a>
                 <?php
                 }
                 ?>

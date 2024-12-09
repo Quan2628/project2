@@ -119,4 +119,19 @@ class ProductController extends Controller
         Session::put('message', 'Xoá sản phẩm thành công');
         return Redirect::to('all_product');
     }
+
+    //End admin
+
+    //Start user
+    public function product_details($product_id){
+        $cate_product = DB::table('category_product')->where('cat_status', '0')->orderBy('cat_id')->get();
+        $brand_product = DB::table('brand_product')->where('brand_status', '0')->orderBy('brand_id')->get();
+        $product_details = DB::table('product')
+        ->join('category_product','category_product.cat_id','=','product.category_id')
+        ->join('brand_product','brand_product.brand_id','=','product.brand_id')
+        ->where('product.product_id', $product_id)->get();
+        // dd($product_details);
+        return view('product.show_detail')->with('category', $cate_product)
+        ->with('brand', $brand_product)->with('product_details', $product_details);
+    }
 }

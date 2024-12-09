@@ -57,11 +57,11 @@
                 <?php
                 if ($brand_prod->brand_status == 0){
                 ?>
-                  <a href="{{ route('unactive_brand', ['brand_product_id' => $brand_prod->brand_id]) }}">Ẩn</a>
+                  <a href="{{ route('unactive_brand', ['brand_product_id' => $brand_prod->brand_id]) }}">Hiển thị</a>
                 <?php  
                 }else{
                 ?>
-                  <a href="{{ route('active_brand', ['brand_product_id' => $brand_prod->brand_id]) }}">Hiển thị</a>
+                  <a href="{{ route('active_brand', ['brand_product_id' => $brand_prod->brand_id]) }}">Ẩn</a>
                 <?php
                 }
                 ?>

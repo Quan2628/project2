@@ -50,10 +50,10 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputFile">Hiển thị</label>
+                            <label for="exampleInputFile">Trạng thái</label>
                             <select name="product_status" class="form-control input-sm m-bot15">
-                                <option value="0">Ẩn</option>
-                                <option value="1">Hiển thị</option>
+                                <option value="0">Hiển thị</option>
+                                <option value="1">Ẩn</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-info">Thêm sản phẩm</button>

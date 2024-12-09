@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 
 class CategoryProductController extends Controller
 {
-    //
+    //Start admin
     public function AuthLogin(){
         $admin_id = Session::get('admin_id');
         if($admin_id){
@@ -75,5 +75,18 @@ class CategoryProductController extends Controller
         DB::table('category_product')->where('cat_id', $cat_product_id)->delete();
         Session::put('message', 'Xoá danh mục thành công');
         return Redirect::to('all_cat');
+    }
+
+    //End admin
+
+    //Start user
+    public function category($cat_product_id){
+        $cate_product = DB::table('category_product')->where('cat_status', '0')->orderBy('cat_id')->get();
+        $brand_product = DB::table('brand_product')->where('brand_status', '0')->orderBy('brand_id')->get();
+        $category_by_id = DB::table('product')->join('category_product', 'category_product.cat_id','=','product.category_id')
+        ->where('product.category_id', $cat_product_id)->get();
+        $category_name = DB::table('category_product')->where('category_product.cat_id', $cat_product_id)->limit(1)->get();
+        return view('cate-brand.show_cate')->with('category', $cate_product)
+        ->with('brand', $brand_product)->with('cate_by_id', $category_by_id)->with('category_name', $category_name);
     }
 }

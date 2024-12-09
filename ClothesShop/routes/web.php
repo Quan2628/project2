@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BrandProductController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ProductController;
+use Database\Seeders\CategoryProductSeeder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,7 @@ Route::get('/admin', [AdminController::class, 'index'])->name('login');
 Route::get('/create', [AdminController::class, 'create'])->name('create');
 Route::post('/register', [AdminController::class, 'register'])->name('register');
 Route::post('/logon', [AdminController::class, 'logon'])->name('logon');
+Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 // Bảo vệ bởi authentication => phải đăng nhập mới có quyền truy cập
 // Route::middleware('auth')->prefix('/admin')->group(function(){    
@@ -38,6 +40,10 @@ Route::post('/logon', [AdminController::class, 'logon'])->name('logon');
 
 //frontend
 Route::get('/index', [HomeController::class, 'index'])->name('index');
+//category_home
+Route::get('/category_home/{cat_id}', [CategoryProductController::class, 'category'])->name('category_home');
+Route::get('/brand_home/{brand_id}', [BrandProductController::class, 'brand'])->name('brand_home');
+Route::get('/product_details/{product_id}', [ProductController::class, 'product_details'])->name('product_details');
 
 
 
@@ -65,7 +71,7 @@ Route::get('/index', [HomeController::class, 'index'])->name('index');
 
 
 //backend
-Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+//dashboard
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
 //category_product

@@ -65,11 +65,11 @@
                 <?php
                 if ($prod->product_status == 0){
                 ?>
-                  <a href="{{ route('unactive_product', ['product_id' => $prod->product_id]) }}">Ẩn</a>
+                  <a href="{{ route('unactive_product', ['product_id' => $prod->product_id]) }}">Hiển thị</a>
                 <?php  
                 }else{
                 ?>
-                  <a href="{{ route('active_product', ['product_id' => $prod->product_id]) }}">Hiển thị</a>
+                  <a href="{{ route('active_product', ['product_id' => $prod->product_id]) }}">Ẩn</a>
                 <?php
                 }
                 ?>

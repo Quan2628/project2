@@ -76,4 +76,16 @@ class BrandProductController extends Controller
         Session::put('message', 'Xoá thương hiệu thành công');
         return Redirect::to('all_brand');
     }
+    //End admin
+
+    //Start user
+    public function brand($brand_id){
+        $cate_product = DB::table('category_product')->where('cat_status', '0')->orderBy('cat_id')->get();
+        $brand_product = DB::table('brand_product')->where('brand_status', '0')->orderBy('brand_id')->get();
+        $brand_by_id = DB::table('product')->join('brand_product', 'brand_product.brand_id','=','product.brand_id')
+        ->where('product.brand_id', $brand_id)->get();
+        $brand_name = DB::table('brand_product')->where('brand_product.brand_id', $brand_id)->limit(1)->get();
+        return view('cate-brand.show_brand')->with('category', $cate_product)
+        ->with('brand', $brand_product)->with('brand_by_id', $brand_by_id)->with('brand_name', $brand_name);
+    }
 }
