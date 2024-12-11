@@ -7,7 +7,7 @@
             <div class="product-image-wrapper">
                 <div class="single-products">
                         <div class="productinfo text-center">
-                            <img src="uploads/product/{{$product->product_image}}" height="200" width="200"/>
+                            <a href="{{ route('product_details', $product->product_id) }}"><img src="uploads/product/{{$product->product_image}}" height="200" width="200"/></a>
                             <h2>{{number_format($product->product_price).' '.'VNĐ'}}</h2>
                             <p>{{$product->product_name}}</p>
                             <a href="#" class="btn btn-default add-to-cart">

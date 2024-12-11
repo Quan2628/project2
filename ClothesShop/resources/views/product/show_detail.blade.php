@@ -39,15 +39,15 @@
             <span>
                 <span>Giá: {{number_format($pro_details->product_price).' '.'VNĐ'}}</span>
                 <label>Số lượng:</label>
-                <input name="quantity" type="number" min="1" value="1" />
-                <input name="productid_hidden" type="hidden" value="{{$pro_details->product_id}}" />
+                <input name="quantity" type="number" min="1" value="1"/>
+                <input name="productid_hidden" type="hidden" value="{{$pro_details->product_id}}"/>
                 <button type="submit" class="btn btn-fefault cart">
                     <i class="fa fa-shopping-cart"></i>
                     Thêm vào giỏ hàng
                 </button>
             </span>
             </form>
-            <p><b>Tình trạng: </b></p>
+            <p><b>Tình trạng: Còn hàng</b></p>
             <p><b>Điều kiện: </b>Mới</p>
             <p><b>Danh mục: </b>{{$pro_details->cat_name}}</p>
             <p><b>Thương hiệu: </b>{{$pro_details->brand_name}}</p>

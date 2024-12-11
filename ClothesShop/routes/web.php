@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BrandProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use Database\Seeders\CategoryProductSeeder;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,7 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// Xử lý đăng nhập / đăng xuất
+// Xử lý đăng nhập / đăng xuất admin
 Route::get('/admin', [AdminController::class, 'index'])->name('login');
 Route::get('/create', [AdminController::class, 'create'])->name('create');
 Route::post('/register', [AdminController::class, 'register'])->name('register');
@@ -46,6 +47,19 @@ Route::get('/category_home/{cat_id}', [CategoryProductController::class, 'catego
 Route::get('/brand_home/{brand_id}', [BrandProductController::class, 'brand'])->name('brand_home');
 Route::get('/product_details/{product_id}', [ProductController::class, 'product_details'])->name('product_details');
 
+//Cart
+Route::post('/save_cart', [CartController::class, 'save_cart'])->name('save_cart');
+Route::post('/update_cart', [CartController::class, 'update_cart'])->name('update_cart');
+Route::get('/show_cart', [CartController::class, 'show_cart'])->name('show_cart');
+Route::get('/delete_cart/{id}', [CartController::class, 'delete_cart'])->name('delete_cart');
+
+//Checkout
+Route::get('/login_checkout', [CheckoutController::class, 'login_checkout'])->name('login_checkout');
+Route::get('/logout_checkout', [CheckoutController::class, 'logout_checkout'])->name('logout_checkout');
+Route::post('/login_customer', [CheckoutController::class, 'login_customer'])->name('login_customer');
+Route::post('/add_customer', [CheckoutController::class, 'add_customer'])->name('add_customer');
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+Route::post('/save_checkout', [CheckoutController::class, 'save_checkout'])->name('save_checkout');
 
 
 
@@ -112,5 +126,4 @@ Route::get('/unactive_product/{product_id}', [ProductController::class, 'unactiv
 Route::get('/active_product/{product_id}', [ProductController::class, 'active_product'])->name('active_product');
 
 
-//Cart
-Route::post('/save_cart', [CartController::class, 'save_cart'])->name('save_cart');
+
