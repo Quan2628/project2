@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BrandProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ProductController;
 use Database\Seeders\CategoryProductSeeder;
@@ -40,7 +41,7 @@ Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 //frontend
 Route::get('/index', [HomeController::class, 'index'])->name('index');
-//category_home
+//category_brand_home
 Route::get('/category_home/{cat_id}', [CategoryProductController::class, 'category'])->name('category_home');
 Route::get('/brand_home/{brand_id}', [BrandProductController::class, 'brand'])->name('brand_home');
 Route::get('/product_details/{product_id}', [ProductController::class, 'product_details'])->name('product_details');
@@ -110,5 +111,6 @@ Route::post('/update_product/{product_id}', [ProductController::class, 'update_p
 Route::get('/unactive_product/{product_id}', [ProductController::class, 'unactive_product'])->name('unactive_product');
 Route::get('/active_product/{product_id}', [ProductController::class, 'active_product'])->name('active_product');
 
-//order
-Route::get('/order', []);
+
+//Cart
+Route::post('/save_cart', [CartController::class, 'save_cart'])->name('save_cart');

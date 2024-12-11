@@ -130,8 +130,18 @@ class ProductController extends Controller
         ->join('category_product','category_product.cat_id','=','product.category_id')
         ->join('brand_product','brand_product.brand_id','=','product.brand_id')
         ->where('product.product_id', $product_id)->get();
-        // dd($product_details);
+
+        foreach($product_details as $pro_details){
+            $category_id = $pro_details->cat_id;
+        }
+
+        $related_product = DB::table('product')
+        ->join('category_product','category_product.cat_id','=','product.category_id')
+        ->join('brand_product','brand_product.brand_id','=','product.brand_id')
+        ->where('category_product.cat_id', $category_id)->whereNotIn('product.product_id', [$product_id])->get();
+
         return view('product.show_detail')->with('category', $cate_product)
-        ->with('brand', $brand_product)->with('product_details', $product_details);
+        ->with('brand', $brand_product)->with('product_details', $product_details)
+        ->with('related', $related_product);
     }
 }

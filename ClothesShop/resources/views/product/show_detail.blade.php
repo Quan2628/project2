@@ -34,20 +34,25 @@
             <h2>{{$pro_details->product_name}}</h2>
             <p>Mã sản phẩm: {{$pro_details->product_id}}</p>
             <img src="images/product-details/rating.png" alt="" />
+            <form action="{{ route('save_cart') }}" method="post">
+            @csrf
             <span>
                 <span>Giá: {{number_format($pro_details->product_price).' '.'VNĐ'}}</span>
-                <label>Quantity:</label>
-                <input type="number" min="1" value="1" />
+                <label>Số lượng:</label>
+                <input name="quantity" type="number" min="1" value="1" />
+                <input name="productid_hidden" type="hidden" value="{{$pro_details->product_id}}" />
+                <button type="submit" class="btn btn-fefault cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    Thêm vào giỏ hàng
+                </button>
             </span>
+            </form>
             <p><b>Tình trạng: </b></p>
             <p><b>Điều kiện: </b>Mới</p>
             <p><b>Danh mục: </b>{{$pro_details->cat_name}}</p>
             <p><b>Thương hiệu: </b>{{$pro_details->brand_name}}</p>
-            <button type="button" class="btn btn-fefault cart">
-                <i class="fa fa-shopping-cart"></i>
-                Thêm vào giỏ hàng
-            </button>
-            <a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+            <a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" />
+            </a>
         </div><!--/product-information-->
     </div>
 </div><!--/product-details-->
@@ -101,39 +106,26 @@
 </div><!--/category-tab-->
 @endforeach
 <div class="recommended_items"><!--recommended_items-->
-    <h2 class="title text-center">Sản phẩm gợi ý</h2>
+    <h2 class="title text-center">Sản phẩm liên quan</h2>
     
     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="item active">	
+            <div class="item active">
+            @foreach ($related as $relate)
                 <div class="col-sm-4">
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
-                                <img src="{{ asset('frontend/images/recommend1.jpg') }}" alt="" />
-                                <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
-                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
+                                <img src="{{ asset('uploads/product/'.$relate->product_image) }}" height="200" width="200"/>
+                                <h2>{{number_format($relate->product_price).' '.'VNĐ'}}</h2>
+                                <p>{{$relate->product_name}}</p>
+                                <a href="#" class="btn btn-default add-to-cart">
+                                    <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                             </div>
-                        </div>
+                    </div>
                     </div>
                 </div>
-                    
-            </div>
-            <div class="item">	
-                <div class="col-sm-4">
-                    <div class="product-image-wrapper">
-                        <div class="single-products">
-                            <div class="productinfo text-center">
-                                <img src="{{ asset('frontend/images/recommend1.jpg') }}" alt="" />
-                                <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
-                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    
+            @endforeach
             </div>
         </div>
          <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
