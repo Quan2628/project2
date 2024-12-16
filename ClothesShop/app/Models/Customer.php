@@ -10,5 +10,6 @@ class Customer extends Model
     use HasFactory;
     protected $table = 'customer';
     protected $fillable = ['cus_name', 'cus_email', 'cus_password', 'cus_phone'];
+    public $timestamp = false;
 }
 

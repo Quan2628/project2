@@ -32,7 +32,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <header class="header fixed-top clearfix">
 <!--logo start-->
 <div class="brand">
-    <a href="index.html" class="logo">
+    <a href="{{ route('dashboard') }}" class="logo" ><img src="{{ asset('backend/images/logo.png') }}" alt="" />
         QLShop
     </a>
     <div class="sidebar-toggle-box">
@@ -43,13 +43,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="top-nav clearfix">
     <!--search & user info start-->
     <ul class="nav pull-right top-menu">
-        <li>
+        {{-- <li>
             <input type="text" class="form-control search" placeholder=" Search">
-        </li>
+        </li> --}}
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="{{ asset('backend/images/2.png') }}">
+                <img alt="" src="{{ asset('backend/images/anhdaidien.jpg') }}">
                 <span class="username">
         <?php
 	    $name = Session::get('admin_name');
@@ -88,10 +88,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
+                        <span>Slider</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{ route('manage_banner') }}">Liệt kê slider</a></li>
+						<li><a href="{{ route('add_banner') }}">Thêm slider</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
                         <span>Đơn hàng</span>
                     </a>
                     <ul class="sub">
-						<li><a href="{{ route('add_cat') }}">Quản lý đơn hàng</a></li>
+						<li><a href="{{ route('manage_order') }}">Quản lý đơn hàng</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

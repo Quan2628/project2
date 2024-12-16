@@ -18,27 +18,27 @@ class CategoryProductSeeder extends Seeder
             [
                 'cat_name'=>'Áo thun',
                 'cat_description'=>'',
-                'cat_status'=>1
+                'cat_status'=>0
             ],
             [
                 'cat_name'=>'Quần jean',
                 'cat_description'=>'',
-                'cat_status'=>1
+                'cat_status'=>0
             ],
             [
                 'cat_name'=>'Quần kaki',
                 'cat_description'=>'',
-                'cat_status'=>1
+                'cat_status'=>0
             ],
             [
                 'cat_name'=>'Áo khoác',
                 'cat_description'=>'',
-                'cat_status'=>1
+                'cat_status'=>0
             ],
             [
                 'cat_name'=>'Giày sneaker',
                 'cat_description'=>'',
-                'cat_status'=>1
+                'cat_status'=>0
             ]
         ]);
     }

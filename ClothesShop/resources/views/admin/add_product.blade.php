@@ -23,7 +23,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Ảnh sản phẩm</label>
-                            <input type="file" name="product_image" class="form-control">
+                            <input type="file" name="product_image" class="form-control" height="100" width="100">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả sản phẩm</label>

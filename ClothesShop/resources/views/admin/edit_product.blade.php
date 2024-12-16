@@ -24,7 +24,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Ảnh sản phẩm</label>
-                            <input type="file" name="product_image" class="form-control">
+                            <input type="file" name="product_image" class="form-control" value="{{old('product_image', $edit_prod->product_image)}}">
                             <img src="uploads/product/{{$edit_prod->product_image}}" alt="" height="60" width="60">
                         </div>
                         <div class="form-group">

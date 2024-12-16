@@ -4,9 +4,13 @@
     <div class="container">
         <div class="breadcrumbs">
             <ol class="breadcrumb">
-              <li><a href="{{ route('show_cart') }}">Trang chủ</a></li>
-              <li class="active">Giỏ hàng</li>
+              <li><a href="{{ route('checkout') }}">Trang chủ</a></li>
+              <li class="active">Thanh toán giỏ hàng</li>
             </ol>
+        </div>
+
+        <div class="review-payment">
+            <h2>Lịch sử giỏ hàng</h2>
         </div>
         <div class="table-responsive cart_info">
             <?php
@@ -44,8 +48,8 @@
                                 <input class="cart_quantity_input" type="text" name="cart_quantity" value="{{$v_content->qty}}" size="2">
                                 <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart"
                                 class="form-control">
-                                <input type="submit" value="Cập nhật" name="update_qty"
-                                class="btn-btn-default btn-sm">
+                                {{-- <input type="submit" value="Cập nhật" name="update_qty"
+                                class="btn-btn-default btn-sm"> --}}
                                 </form>
                             </div>
                         </td>
@@ -66,36 +70,19 @@
                 </tbody>
             </table>
         </div>
+        <h4 style="margin:40px 0; font-size:20px">Chọn phương thức thanh toán</h4>
+        <form action="{{ route('order') }}" method="post">
+            @csrf
+        <div class="payment-options">
+                <span>
+                    <label><input name="payment_option" value="1" type="checkbox">Thanh toán bằng thẻ</label>
+                </span>
+                <span>
+                    <label><input name="payment_option" value="2" type="checkbox">Thanh toán tiền mặt</label>
+                </span>
+                <input type="submit" value="Đặt hàng" name="send_order_place" class="btn btn-primary">
+        </div>
+        </form>
     </div>
 </section> <!--/#cart_items-->
-
-<section id="do_action">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="total_area">
-                    <ul>
-                        <li>Tổng <span>{{Cart::subtotal(0).' '.'VNĐ'}}</span></li>
-                        <li>Thuế <span>{{Cart::tax(0).' '.'VNĐ'}}</span></li>
-                        <li>Phí vẩn chuyển <span>Free</span></li>
-                        <li>Thành tiền <span>{{Cart::total(0).' '.'VNĐ'}}</span></li>
-                    </ul>
-                    <?php
-								$customer_id = Session::get('cus_id');
-								if($customer_id != null){
-								?>
-								<a class="btn btn-default check_out" href="{{ route('checkout') }}">Thanh toán</a>
-								<?php
-								}else{
-								?>
-								<a class="btn btn-default check_out" href="{{ route('login_checkout') }}">Thanh toán</a>
-								<?php
-								} 
-								?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section><!--/#do_action-->
-
 @endsection

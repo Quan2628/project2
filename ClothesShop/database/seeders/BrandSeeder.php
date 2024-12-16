@@ -18,22 +18,22 @@ class BrandSeeder extends Seeder
             [
                 'brand_name'=>'TeeLab',
                 'brand_description'=>'Trẻ trung, năng động',
-                'brand_status'=>1
+                'brand_status'=>0
             ],
             [
                 'brand_name'=>'Dior',
                 'brand_description'=>'Sang trọng, lịch lãm',
-                'brand_status'=>1
+                'brand_status'=>0
             ],
             [
                 'brand_name'=>'Adidas',
                 'brand_description'=>'',
-                'brand_status'=>1
+                'brand_status'=>0
             ],
             [
                 'brand_name'=>'TheNoob',
                 'brand_description'=>'Phong cách thời trang',
-                'brand_status'=>1
+                'brand_status'=>0
             ]
         ]);
     }

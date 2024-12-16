@@ -10,4 +10,5 @@ class CategoriesProduct extends Model
     use HasFactory;
     protected $table = 'category_product';
     protected $fillable = ['cat_name', 'cat_description', 'cat_status'];
+    public $timestamp = false;
 }

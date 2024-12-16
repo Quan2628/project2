@@ -11,4 +11,5 @@ class Product extends Model
     protected $table = 'product';
     protected $fillable = ['category_id', 'brand_id', 'product_name', 'product_description', 'product_price', 
     'product_image', 'product_status'];
+    public $timestamp = false;
 }

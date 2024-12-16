@@ -7,13 +7,13 @@
       </div>
       <div class="row w3-res-tb">
         <div class="col-sm-5 m-b-xs">
-          <select class="input-sm form-control w-sm inline v-middle">
+          {{-- <select class="input-sm form-control w-sm inline v-middle">
             <option value="0">Bulk action</option>
             <option value="1">Delete selected</option>
             <option value="2">Bulk edit</option>
             <option value="3">Export</option>
           </select>
-          <button class="btn btn-sm btn-primary">Áp dụng</button>              
+          <button class="btn btn-sm btn-primary">Áp dụng</button>               --}}
         </div>
         <div class="col-sm-4">
         </div>
@@ -72,7 +72,7 @@
                     <i class="fa fa-pencil text-success text-active"></i>
                 </a>
                 <a onclick="return confirm('Bạn có muốn xoá danh mục này không?')" href="{{ route('delete_cat', ['cat_product_id' => $cat_prod->cat_id])}}" class="active" ui-toggle-class="">
-                    <i class="fa fa-times text-danger text"></i>
+                    <i class="fa fa-trash text-danger text"></i>
                 </a>
               </td>
             </tr>

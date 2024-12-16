@@ -59,7 +59,7 @@
 						<div class="logo pull-left">
 							<a href="{{ route('index') }}"><img src="{{ asset('frontend/images/logo.png') }}" alt="" /></a>
 						</div>
-						<div class="btn-group pull-right">
+						{{-- <div class="btn-group pull-right">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
 									USA
@@ -81,7 +81,7 @@
 									<li><a href="#">Pound</a></li>
 								</ul>
 							</div>
-						</div>
+						</div> --}}
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
@@ -89,14 +89,19 @@
 								<li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
 								<?php
 								$customer_id = Session::get('cus_id');
-								if($customer_id != null){
+								$shipping_id = Session::get('shipping_id');
+								if($customer_id != null && $shipping_id == null){
 								?>
 								<li><a href="{{ route('checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
 								<?php
+								}else if($customer_id != null && $shipping_id != null){
+								?>
+								<li><a href="{{ route('payment') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+								<?php
 								}else{
 								?>
-								<li><a href="{{ route('login_checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-								<?php
+								<li><a href="{{ route('login_checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>	
+								<?php 	
 								} 
 								?>
 								<li><a href="{{ route('show_cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
@@ -104,11 +109,11 @@
 								$customer_id = Session::get('cus_id');
 								if($customer_id != null){
 								?>
-								<li><a href="{{ route('logout_checkout') }}"><i class="fa fa-unlock"></i> Đăng xuất</a></li>
+								<li><a href="{{ route('logout_user') }}"><i class="fa fa-unlock"></i> Đăng xuất</a></li>
 								<?php
 								}else{
 								?>
-								<li><a href="{{ route('login_checkout') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+								{{-- <li><a href="{{ route('logon_user') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li> --}}
 								<?php
 								} 
 								?>
@@ -122,7 +127,7 @@
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-9">
+					<div class="col-sm-8">
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 								<span class="sr-only">Toggle navigation</span>
@@ -136,23 +141,27 @@
 								<li><a href="{{ route('index') }}" class="active">Trang chủ</a></li>
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Sản phẩm</a></li>
+                                        <li><a href="">Sản phẩm</a></li>
                                     </ul>
                                 </li> 
 								<li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
+                                        <li><a href="">Blog List</a></li>
                                     </ul>
                                 </li> 
-								<li><a href="404.html">404</a></li>
-								<li><a href="contact-us.html">Liên hệ</a></li>
+								<li><a href="">404</a></li>
+								<li><a href="">Liên hệ</a></li>
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-4">
+						<form action="{{ route('search') }}" method="post">
+							@csrf
 						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+							<input type="text" name="keywords_submit" placeholder="Tìm kiếm"/>
+							<input type="submit" style="margin-top: 0px" name="search_items" class="btn btn-primary btn-sm" value="Tìm kiếm">
 						</div>
+					    </form>
 					</div>
 				</div>
 			</div>
@@ -168,47 +177,27 @@
 							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
 							<li data-target="#slider-carousel" data-slide-to="1"></li>
 							<li data-target="#slider-carousel" data-slide-to="2"></li>
+							<li data-target="#slider-carousel" data-slide-to="3"></li>
 						</ol>
 						
 						<div class="carousel-inner">
-							<div class="item active">
-								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
-									<h2>Free E-Commerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="{{ asset('frontend/images/girl1.jpg') }}" class="girl img-responsive" alt="" />
-									<img src="{{ asset('frontend/images/pricing.png') }}"  class="pricing" alt="" />
-								</div>
-							</div>
-							<div class="item">
-								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
-									<h2>100% Responsive Design</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="{{ asset('frontend/images/girl2.jpg') }}" class="girl img-responsive" alt="" />
-									<img src="{{ asset('frontend/images/pricing.png') }}"  class="pricing" alt="" />
+							@php
+								$i = 0;
+							@endphp
+							@if (!empty($slider) && $slider->count())
+							@foreach ($slider as $slide)
+							@php
+								$i++;
+							@endphp
+							<div class="item {{$i == 1 ? 'active' : ''}}">
+								<div class="col-sm-12">
+									<img alt="{{$slide->slider_image}}" src="uploads/slider/{{$slide->slider_image}}" width="90%" height="500" class="img img-responsive">
 								</div>
 							</div>
-							
-							<div class="item">
-								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
-									<h2>Free Ecommerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="{{ asset('frontend/images/girl3.jpg') }}" class="girl img-responsive" alt="" />
-									<img src="{{ asset('frontend/images/pricing.png') }}" class="pricing" alt="" />
-								</div>
-							</div>
-							
+							@endforeach
+							@else
+							<p>Không có dữ liệu slider.</p>
+							@endif
 						</div>
 						
 						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">

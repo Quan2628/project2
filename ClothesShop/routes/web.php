@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SliderController;
 use Database\Seeders\CategoryProductSeeder;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,11 @@ Route::post('/register', [AdminController::class, 'register'])->name('register')
 Route::post('/logon', [AdminController::class, 'logon'])->name('logon');
 Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
+// Xử lý đăng nhập / đăng xuất user
+Route::get('/user', [HomeController::class, 'index_user'])->name('login');
+Route::post('/logon_user', [HomeController::class, 'logon_user'])->name('logon_user');
+Route::get('/logout_user', [HomeController::class, 'logout_user'])->name('logout_user');
+Route::post('/register_user', [HomeController::class, 'register_user'])->name('register_user');
 // Bảo vệ bởi authentication => phải đăng nhập mới có quyền truy cập
 // Route::middleware('auth')->prefix('/admin')->group(function(){    
 //     Route::get('/index', [HomeController::class, 'index'])->name('admin.index');
@@ -42,6 +48,8 @@ Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 //frontend
 Route::get('/index', [HomeController::class, 'index'])->name('index');
+Route::post('/search', [HomeController::class, 'search'])->name('search');
+
 //category_brand_home
 Route::get('/category_home/{cat_id}', [CategoryProductController::class, 'category'])->name('category_home');
 Route::get('/brand_home/{brand_id}', [BrandProductController::class, 'brand'])->name('brand_home');
@@ -51,7 +59,7 @@ Route::get('/product_details/{product_id}', [ProductController::class, 'product_
 Route::post('/save_cart', [CartController::class, 'save_cart'])->name('save_cart');
 Route::post('/update_cart', [CartController::class, 'update_cart'])->name('update_cart');
 Route::get('/show_cart', [CartController::class, 'show_cart'])->name('show_cart');
-Route::get('/delete_cart/{id}', [CartController::class, 'delete_cart'])->name('delete_cart');
+Route::get('/delete_cart/{rowId}', [CartController::class, 'delete_cart'])->name('delete_cart');
 
 //Checkout
 Route::get('/login_checkout', [CheckoutController::class, 'login_checkout'])->name('login_checkout');
@@ -59,28 +67,9 @@ Route::get('/logout_checkout', [CheckoutController::class, 'logout_checkout'])->
 Route::post('/login_customer', [CheckoutController::class, 'login_customer'])->name('login_customer');
 Route::post('/add_customer', [CheckoutController::class, 'add_customer'])->name('add_customer');
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+Route::get('/payment', [CheckoutController::class, 'payment'])->name('payment');
 Route::post('/save_checkout', [CheckoutController::class, 'save_checkout'])->name('save_checkout');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::post('/order', [CheckoutController::class, 'order'])->name('order');
 
 
 
@@ -125,5 +114,15 @@ Route::post('/update_product/{product_id}', [ProductController::class, 'update_p
 Route::get('/unactive_product/{product_id}', [ProductController::class, 'unactive_product'])->name('unactive_product');
 Route::get('/active_product/{product_id}', [ProductController::class, 'active_product'])->name('active_product');
 
+//order
+Route::get('/manage_order', [CheckoutController::class, 'manage_order'])->name('manage_order');
+Route::get('/view_order/{order_id}', [CheckoutController::class, 'view_order'])->name('view_order');
 
+//banner
+Route::get('/manage_banner', [SliderController::class, 'manage_banner'])->name('manage_banner');
+Route::get('/add_banner', [SliderController::class, 'add_banner'])->name('add_banner');
+Route::post('/insert_banner', [SliderController::class, 'insert_banner'])->name('insert_banner');
 
+Route::get('/unactive_slider/{slider_id}', [SliderController::class, 'unactive_slider'])->name('unactive_slider');
+Route::get('/active_slider/{slider_id}', [SliderController::class, 'active_slider'])->name('active_slider');
+Route::get('/delete_slider/{slider_id}', [SliderController::class, 'delete_slider'])->name('delete_slider');

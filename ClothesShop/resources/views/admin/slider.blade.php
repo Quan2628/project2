@@ -3,7 +3,7 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
       <div class="panel-heading">
-        Liệt kê sản phẩm
+        Liệt kê banner
       </div>
       <div class="row w3-res-tb">
         <div class="col-sm-5 m-b-xs">
@@ -38,48 +38,36 @@
           <thead>
             <tr>
               <th style="width:20px;">
-                <label class="i-checks m-b-none">
-                  <input type="checkbox"><i></i>
-                </label>
               </th>
-              <th>Tên sản phẩm</th>
+              <th>Tên slide</th>
               <th>Hình ảnh</th>
-              <th>Giá</th>
-              <th>Danh mục sản phẩm</th>
-              <th>Thương hiệu sản phẩm</th>
-              <th>Trạng thái</th>
-              <th>Ngày thêm</th>
+              <th>Mô tả</th>
+              <th>Tình trạng</th>
               <th style="width:30px;"></th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($all_product as $prod)
+            @foreach ($all_slide as $slide)
             <tr>
               <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-              <td>{{$prod->product_name}}</td>
-              <td><img src="uploads/product/{{$prod->product_image}}" height="60" width="60"></td>
-              <td>{{$prod->product_price}}</td>
-              <td>{{$prod->cat_name}}</td>
-              <td>{{$prod->brand_name}}</td>
+              <td>{{$slide->slider_name}}</td>
+              <td><img src="uploads/slider/{{$slide->slider_image}}" height="80" width="120"></td>
+              <td>{{$slide->slider_description}}</td>
               <td><span class="text-ellipsis">
                 <?php
-                if ($prod->product_status == 0){
+                if ($slide->slider_status == 0){
                 ?>
-                  <a href="{{ route('unactive_product', ['product_id' => $prod->product_id]) }}">Hiển thị</a>
+                  <a href="{{ route('unactive_slider', ['slider_id' => $slide->slider_id]) }}">Hiển thị</a>
                 <?php  
                 }else{
                 ?>
-                  <a href="{{ route('active_product', ['product_id' => $prod->product_id]) }}">Ẩn</a>
+                  <a href="{{ route('active_slider', ['slider_id' => $slide->slider_id]) }}">Ẩn</a>
                 <?php
                 }
                 ?>
               </span></td>
-              <td><span class="text-ellipsis">{{$prod->created_at}}</span></td>
               <td>
-                <a href="{{ route('edit_product', ['product_id' => $prod->product_id]) }}" class="active" ui-toggle-class="">
-                    <i class="fa fa-pencil text-success text-active"></i>
-                </a>
-                <a onclick="return confirm('Bạn có muốn xoá danh mục này không?')" href="{{ route('delete_product', ['product_id' => $prod->product_id])}}" class="active" ui-toggle-class="">
+                <a onclick="return confirm('Bạn có muốn xoá danh mục này không?')" href="{{ route('delete_slider', ['slider_id' => $slide->slider_id])}}" class="active" ui-toggle-class="">
                     <i class="fa fa-trash text-danger text"></i>
                 </a>
               </td>

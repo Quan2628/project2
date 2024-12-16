@@ -1,8 +1,8 @@
 @extends('index')
 @section('content')    
     <div class="features_items"><!--features_items-->
-        <h2 class="title text-center">Danh sách sản phẩm</h2>
-        @foreach ($all_product as $product)
+        <h2 class="title text-center">Kết quả tìm kiếm</h2>
+        @foreach ($search_product as $product)
         <div class="col-sm-4">
             <div class="product-image-wrapper">
                 <div class="single-products">
@@ -10,8 +10,8 @@
                             <a href="{{ route('product_details', $product->product_id) }}"><img src="uploads/product/{{$product->product_image}}" height="200" width="200"/></a>
                             <h2>{{number_format($product->product_price).' '.'VNĐ'}}</h2>
                             <p>{{$product->product_name}}</p>
-                            {{-- <a href="{{ route('show_cart') }}" type="submit" class="btn btn-default add-to-cart">
-                                <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a> --}}
+                            <a href="{{ route('show_cart') }}" class="btn btn-default add-to-cart">
+                                <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                         </div>
                 </div>
                 <div class="choose">
