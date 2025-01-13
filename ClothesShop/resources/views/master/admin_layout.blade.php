@@ -19,7 +19,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{{ asset('backend/css/font-awesome.css') }}" rel="stylesheet"> 
 <link rel="stylesheet" href="{{ asset('backend/css/morris.css') }}" type="text/css"/>
 <!-- calendar -->
-<link rel="stylesheet" href="{{ asset('backend/css/monthly.css') }}">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
 <!-- //calendar -->
 <!-- //font-awesome icons -->
 <script src="{{ asset('backend/js/jquery2.0.3.min.js') }}"></script>
@@ -83,6 +83,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <a class="active" href="{{ route('dashboard') }}">
                         <i class="fa fa-dashboard"></i>
                         <span>Tổng quan</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="active" href="{{ route('information') }}">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Thông tin website</span>
                     </a>
                 </li>
                 <li class="sub-menu">
@@ -160,6 +166,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/scripts.js') }}"></script>
 <script src="{{ asset('backend/js/jquery.slimscroll.js') }}"></script>
 <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="{{ asset('backend/js/jquery.scrollTo.js') }}"></script>
 <!-- morris JavaScript -->	
@@ -218,37 +225,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	   
 	});
 	</script>
-<!-- calendar -->
-	<script type="text/javascript" src="{{ asset('backend/js/monthly.js') }}"></script>
-	<script type="text/javascript">
-		$(window).load( function() {
+    <script>
+    $( function() {
+       $( "#datepicker" ).datepicker({
 
-			$('#mycalendar').monthly({
-				mode: 'event',
-				
-			});
+       });
+       
+       $( "#datepicker2" ).datepicker({
 
-			$('#mycalendar2').monthly({
-				mode: 'picker',
-				target: '#mytarget',
-				setWidth: '250px',
-				startHidden: true,
-				showTrigger: '#mytarget',
-				stylePast: true,
-				disablePast: true
-			});
+       });
+    });
 
-		switch(window.location.protocol) {
-		case 'http:':
-		case 'https:':
-		// running on a server, should be good.
-		break;
-		case 'file:':
-		alert('Just a heads-up, events will not work when run locally.');
-		}
+    </script>
 
-		});
-	</script>
-	<!-- //calendar -->
 </body>
 </html>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -58,25 +60,29 @@ class AdminController extends Controller
 
     public function create()
     {
-        return view('register');
+        return view('admin.admin_register');
     }
 
-    // public function register(Request $request)
-    // {
-    //     $msg = "";
-    //     try {
-    //         $user = User::create([
-    //             'name' => $request->username,
-    //             'email' => $request->email,
-    //             'password' => Hash::make($request->password)
-    //         ]);
-    //         $msg = 'Đăng ký thành công';
-    //     } catch (\Throwable $th) {
-    //         $msg = 'Đăng ký thất bại';
-    //     }
+    public function register(Request $request)
+    {
+        $request->validate([
+            'admin_name' => 'required|string|max:255',
+            'admin_email' => 'required|email|unique:admin',
+            'admin_password' => 'required|min:6|confirmed',
+            'admin_phone' => 'string|max:10'
+        ]);
 
-    //     return redirect()->route('login')->with('msg', $msg);
-    // }
+        // Tạo người dùng mới
+        Admin::create([
+            'admin_name' => $request->admin_name,
+            'admin_email' => $request->admin_email,
+            'admin_password' => md5($request->admin_password),
+            'admin_phone' => $request->admin_phone
+        ]);
+
+        // Chuyển hướng sau khi đăng ký thành công
+        return redirect()->route('admin')->with('success', 'Đăng ký thành công!');
+    }
 
     public function dashboard(){
         $this->AuthLogin();

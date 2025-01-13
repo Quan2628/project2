@@ -38,14 +38,11 @@
           <thead>
             <tr>
               <th style="width:20px;">
-                <label class="i-checks m-b-none">
-                  <input type="checkbox"><i></i>
-                </label>
               </th>
               <th>Tên khách hàng</th>
               <th>Tổng tiền</th>
               <th>Tình trạng</th>
-              <th>Hiển thị</th>
+              <th></th>
               <th style="width:30px;"></th>
             </tr>
           </thead>
@@ -63,9 +60,9 @@
                 <a href="{{ route('view_order', ['order_id' => $order->order_id]) }}" class="active" ui-toggle-class="">
                     <i class="fa fa-pencil text-success text-active"></i>
                 </a>
-                <a onclick="return confirm('Bạn có muốn xoá đơn hàng này không?')" href="" class="active" ui-toggle-class="">
+                {{-- <a onclick="return confirm('Bạn có muốn xoá đơn hàng này không?')" href="" class="active" ui-toggle-class="">
                     <i class="fa fa-trash text-danger text"></i>
-                </a>
+                </a> --}}
               </td>
             </tr>
             @endforeach

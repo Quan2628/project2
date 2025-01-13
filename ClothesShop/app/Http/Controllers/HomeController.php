@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -50,11 +51,31 @@ class HomeController extends Controller
         Session::put('cus_name', null);
         return Redirect::to('user');
     }
-    public function register_user()
+    public function showRegisterForm()
     {
-        return view('register');
+        return view('register'); // Trả về view form đăng ký
     }
+    public function register_user(Request $request)
+    {
+        // Validate dữ liệu
+        $request->validate([
+            'cus_name' => 'required|string|max:255',
+            'cus_email' => 'required|email|unique:customer',
+            'cus_password' => 'required|min:6|confirmed',
+            'cus_phone' => 'string|max:10'
+        ]);
 
+        // Tạo người dùng mới
+        Customer::create([
+            'cus_name' => $request->cus_name,
+            'cus_email' => $request->cus_email,
+            'cus_password' => md5($request->cus_password),
+            'cus_phone' => $request->cus_phone
+        ]);
+
+        // Chuyển hướng sau khi đăng ký thành công
+        return redirect()->route('login_user')->with('success', 'Đăng ký thành công!');
+    }
     public function index(){
         $this->AuthLogin();
         $slider = Slider::orderBy('slider_id', 'desc')->where('slider_status', '0')->take(4)->get();

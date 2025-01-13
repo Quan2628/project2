@@ -145,7 +145,6 @@
         <table class="table table-striped b-t b-light">
           <thead>
             <tr>
-              <th></th>
               <th>Tên sản phẩm</th>
               <th>Số lượng</th>
               <th>Giá</th>
@@ -156,22 +155,17 @@
           <tbody>
             
             <tr>
-                
-              <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
               <td>{{$order_by_id->product_name}}</td>
               <td>{{$order_by_id->product_sale_quantity}}</td>
               <td>{{$order_by_id->product_price}}</td>
-              <td>{{$order_by_id->order_total}}</td>
+              <td>{{$order_by_id->product_price*$order_by_id->product_sale_quantity}}</td>
               <td><span class="text-ellipsis">
               </span></td>
 
               <td>
-                <a href="" class="active" ui-toggle-class="">
-                    <i class="fa fa-pencil text-success text-active"></i>
-                </a>
-                <a onclick="return confirm('Bạn có muốn xoá đơn hàng này không?')" href="" class="active" ui-toggle-class="">
+                {{-- <a onclick="return confirm('Bạn có muốn xoá đơn hàng này không?')" href="" class="active" ui-toggle-class="">
                     <i class="fa fa-trash text-danger text"></i>
-                </a>
+                </a> --}}
               </td>
             </tr>
 

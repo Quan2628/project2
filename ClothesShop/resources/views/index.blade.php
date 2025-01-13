@@ -149,8 +149,7 @@
                                         <li><a href="">Blog List</a></li>
                                     </ul>
                                 </li> 
-								<li><a href="">404</a></li>
-								<li><a href="">Liên hệ</a></li>
+								<li><a href="{{ route('contact') }}">Liên hệ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -196,7 +195,7 @@
 							</div>
 							@endforeach
 							@else
-							<p>Không có dữ liệu slider.</p>
+							<p></p>
 							@endif
 						</div>
 						

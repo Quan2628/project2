@@ -11,7 +11,6 @@
         <div class="table-responsive cart_info">
             <?php
             $content = Cart::content();
-            // dd($content);
             ?>
             <table class="table table-condensed">
                 <thead>

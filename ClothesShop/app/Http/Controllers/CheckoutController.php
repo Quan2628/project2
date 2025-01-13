@@ -92,7 +92,7 @@ class CheckoutController extends Controller
         if($data['payment_method'] == 1){
             echo 'Thanh toán ATM';
         }else{
-            // Cart::destroy();
+            Cart::destroy();
             $cate_product = DB::table('category_product')->where('cat_status', '0')->orderBy('cat_id', 'desc')->get();
             $brand_product = DB::table('brand_product')->where('brand_status', '0')->orderBy('brand_id', 'desc')->get();
             return view('checkout.cash')->with('category', $cate_product)
@@ -124,7 +124,7 @@ class CheckoutController extends Controller
         $manager_order = view('admin.manage_order')->with('all_order', $all_order);
         return view('master.admin_layout')->with('admin.manage_order', $manager_order);
     }
-    public function view_order($order_by_id){
+    public function view_order($orderId){
         $this->AuthLogin();
         $order_by_id = DB::table('order')
         ->join('customer','customer.cus_id','=','order.customer_id')

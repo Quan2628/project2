@@ -6,6 +6,7 @@ use App\Http\Controllers\BrandProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SliderController;
 use Database\Seeders\CategoryProductSeeder;
@@ -28,16 +29,17 @@ Route::get('/', function () {
 });
 
 // Xử lý đăng nhập / đăng xuất admin
-Route::get('/admin', [AdminController::class, 'index'])->name('login');
+Route::get('/admin', [AdminController::class, 'index'])->name('login_admin');
 Route::get('/create', [AdminController::class, 'create'])->name('create');
 Route::post('/register', [AdminController::class, 'register'])->name('register');
 Route::post('/logon', [AdminController::class, 'logon'])->name('logon');
 Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 // Xử lý đăng nhập / đăng xuất user
-Route::get('/user', [HomeController::class, 'index_user'])->name('login');
+Route::get('/user', [HomeController::class, 'index_user'])->name('login_user');
 Route::post('/logon_user', [HomeController::class, 'logon_user'])->name('logon_user');
 Route::get('/logout_user', [HomeController::class, 'logout_user'])->name('logout_user');
+Route::get('/register_form', [HomeController::class, 'showRegisterForm'])->name('register_form');
 Route::post('/register_user', [HomeController::class, 'register_user'])->name('register_user');
 // Bảo vệ bởi authentication => phải đăng nhập mới có quyền truy cập
 // Route::middleware('auth')->prefix('/admin')->group(function(){    
@@ -50,6 +52,9 @@ Route::post('/register_user', [HomeController::class, 'register_user'])->name('r
 Route::get('/index', [HomeController::class, 'index'])->name('index');
 Route::post('/search', [HomeController::class, 'search'])->name('search');
 
+//contact us
+Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
+Route::get('/information', [ContactController::class, 'information'])->name('information');
 //category_brand_home
 Route::get('/category_home/{cat_id}', [CategoryProductController::class, 'category'])->name('category_home');
 Route::get('/brand_home/{brand_id}', [BrandProductController::class, 'brand'])->name('brand_home');

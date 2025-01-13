@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-<title>Đăng ký người dùng</title>
+<title>Đăng ký quản trị</title>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,13 +31,22 @@
             {{ session('success') }}
         </div>
         @endif
-        <form action="{{ route('register_user') }}" method="post">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        <form action="{{ route('register') }}" method="post">
             @csrf
-            <input type="text" class="ggg" name="cus_name" id="" placeholder="Tài khoản"> <br>
-            <input type="text" class="ggg" name="cus_email" id="" placeholder="Thư điện tử"> <br>
-            <input type="text" class="ggg" name="cus_phone" id="" placeholder="Số điện thoại"> <br>
-            <input type="password" class="ggg" name="cus_password" id="" placeholder="Mật khẩu"> <br>
-            <input type="password" class="ggg" name="cus_password_confirmation" placeholder="Xác nhận mật khẩu"> <br>
+            <input type="text" class="ggg" name="admin_name" id="" placeholder="Tài khoản"> <br>
+            <input type="text" class="ggg" name="admin_email" id="" placeholder="Thư điện tử"> <br>
+            <input type="text" class="ggg" name="admin_phone" id="" placeholder="Số điện thoại"> <br>
+            <input type="password" class="ggg" name="admin_password" id="" placeholder="Mật khẩu"> <br>
+            <input type="password" class="ggg" name="admin_password_confirmation" placeholder="Xác nhận mật khẩu"> <br>
             <input type="submit" value="Đăng ký">
         </form>
     </div>
